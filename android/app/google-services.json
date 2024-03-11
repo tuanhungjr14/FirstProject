@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "431018904716",
+    "project_id": "automativeapp",
+    "storage_bucket": "automativeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431018904716:android:d267d891f6664774cf7fa9",
+        "android_client_info": {
+          "package_name": "com.firstproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKngIA6HM8bkISp1zMzWRE6bD-N8tiYNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
