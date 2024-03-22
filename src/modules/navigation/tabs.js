@@ -2,10 +2,6 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeScreen from './screens/HomeScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import NotiScreen from './screens/NotiScreen';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   AccessibilityInfo,
@@ -14,7 +10,12 @@ import {
   View,
 } from 'react-native';
 import {DrawerContent} from './DrawerContent';
-import AccountScreen from './screens/SettingsComponent/AccountScreen';
+import AccountScreen from '../screens/AccountScreen';
+
+import HomeScreen from '../screens/HomeScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import NotiScreen from '../screens/NotiScreen';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -134,12 +135,12 @@ const Tabs = () => {
   );
 };
 
-const App = () => {
-  return (
-    <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen name="Home" component={Tabs} />
-    </Drawer.Navigator>
-  );
-};
+// const App = () => {
+//   return (
+//     <Drawer.Navigator initialRouteName="HomeScreen">
+//       <Drawer.Screen name="HomeScreen" component={Tabs} />
+//     </Drawer.Navigator>
+//   );
+// };
 
-export default App;
+export default Tabs;

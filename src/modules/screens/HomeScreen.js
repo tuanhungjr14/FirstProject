@@ -9,29 +9,29 @@ import {
 import React, {useEffect, useState} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import database from '@react-native-firebase/database';
-import firebase from '@react-native-firebase/app';
 import {useDispatch} from 'react-redux';
-import {removeUserInfo} from '../../src/redux/reducers/userSlice';
+import {removeUserInfo} from '../../redux/reducers/userSlice';
+import {useNavigation} from '@react-navigation/core';
+import Button from '../../components/Button';
 
-const HomeScreen = ({navigation}) => {
-  firebase.initializeApp();
-  useEffect(() => {
-    database()
-      .ref('login')
-      .on('value', snap => {
-        if (snap.val()) {
-          snap.forEach(item => {
-            console.log(item.val());
-          });
-        } else {
-          console.log('Can not connect to database');
-        }
-      });
-  }, []);
+const HomeScreen = () => {
+  // firebase.initializeApp();
+  // useEffect(() => {
+  //   database()
+  //     .ref('login')
+  //     .on('value', snap => {
+  //       if (snap.val()) {
+  //         snap.forEach(item => {
+  //           console.log(item.val());
+  //         });
+  //       } else {
+  //         console.log('Can not connect to database');
+  //       }
+  //     });
+  // }, []);
   const [data, setData] = useState(null);
   const dispatch = useDispatch();
-
+  const navigation = useNavigation();
   const fetchData = async () => {
     try {
       const response = await fetch(
@@ -60,47 +60,29 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          height: 54,
-          flexDirection: 'row',
-          borderBottomColor: 'grey',
-          borderBottomWidth: 0.5,
-          alignItems: 'center',
-        }}>
-        <Text style={{marginLeft: 16}}>Back</Text>
-        <Text style={{flex: 1, textAlign: 'center', fontSize: 20}}>Home</Text>
-        <View style={{marginRight: 16}} />
-      </View>
-      <View>
-        <TouchableOpacity
-          onPress={removeData}
-          style={{
-            height: 40,
-            backgroundColor: 'red',
-            alignItems: 'center',
-            jViewustifyContent: 'center',
-            marginTop: 32,
-          }}>
-          <Text style={styles.buttonText}>Xoa du lieu</Text>
-        </TouchableOpacity>
-      </View>
       <View>
         <Octicons
           name="x-circle-fill"
           size={33}
           color={'black'}
-          style={{position: 'absolute', left: 180, top: 255}}
+          style={{alignSelf: 'center', paddingTop: 205}}
         />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.statusText}>Chưa kết nối xe</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={onLogout} style={styles.button}>
-          <Text style={styles.buttonText}>Kết nối với xe của bạn</Text>
-        </TouchableOpacity>
-      </View>
+
+      <Button
+        title="Kết nối với xe của bạn"
+        color="white"
+        onPress={() => navigation.navigate('ImeiScan')}
+        btnStyle={{
+          width: 221,
+          height: 57,
+          marginTop: 23,
+          borderRadius: 64,
+        }}
+      />
       {data && (
         <View style={styles.dataContainer}>
           <Text style={styles.dataText}>
@@ -126,28 +108,18 @@ const styles = StyleSheet.create({
 
   textContainer: {
     color: 'black',
-
     width: 113,
     height: 20,
-    top: 398,
-    left: 140,
-    alignItems: 'center',
-
-    position: 'absolute',
+    alignSelf: 'center',
+    marginTop: 140,
   },
   buttonContainer: {
-    top: 455,
-    left: 86.5,
     borderRadius: 64,
-
-    alignItems: 'center',
-
-    position: 'absolute',
+    alignSelf: 'center',
   },
   button: {
     backgroundColor: '#02B9AE',
-    flex: 1,
-    height: '100%',
+    marginTop: 47,
     height: 57,
     width: 221,
     borderRadius: 64,

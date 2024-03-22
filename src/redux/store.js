@@ -1,19 +1,30 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {combineReducers} from 'redux';
-import userReducer from '../redux/reducers/userSlice';
+import {persistReducer, persistStore} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import userReducer from '../redux/reducers/userSlice';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['user'],
+  whitelist: ['user'],
 };
 
-export const rootReducers = combineReducers({
+const rootReducer = combineReducers({
   user: userReducer,
-  // cart: 'cartReducer'
+});
+//tao 1 reducer moi co kha nang luu tru du lieu dua trên cau hinh dc cung cap
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      //tat serializable check vi trang thai redux co the chua gtri k tuan theo ngtac  "plan js obj"dc yc mac dinh boi rtk
+      serializableCheck: false,
+    }),
 });
 
-export default configureStore({
-  reducer: rootReducers,
-});
+export const persistor = persistStore(store);
+
+export default store;

@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import database from '@react-native-firebase/database';
-import firebase from '@react-native-firebase/app';
+// import database from '@react-native-firebase/database';
+// import firebase from '@react-native-firebase/app';
 
 const lifeCycle = () => {
   firebase.initializeApp();

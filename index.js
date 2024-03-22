@@ -11,11 +11,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import lifeCycle from './navigationBottom/screens/lifeCycle';
 
-import ImeiScan from './navigationBottom/ImeiScan';
-import MaterialTop from './src/btap3/MaterialTop';
+import ImeiScan from './src/modules/screens/ImeiScan';
+
 import MainContainer from './MainContainer';
 
-import AccountScreen from './navigationBottom/screens/SettingsComponent/AccountScreen';
+import AccountScreen from './src/modules/screens/AccountScreen';
 import App from './App';
+import CarSpecifications from './navigationBottom/screens/CarSpecifications';
+import languageScreen from './src/modules/screens/LanguageScreen';
 
 AppRegistry.registerComponent(appName, () => App);
